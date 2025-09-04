@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soluciones Basadas en Datos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        .left-section {
+            flex: 1;
+        }
+
+        /* Hero Card */
+        .hero-card {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border-radius: 24px;
+            padding: 2rem;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            margin-bottom: 3rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .start-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .start-btn:hover {
+            background: #059669;
+            transform: scale(1.05);
+        }
+
+        /* Menu Items */
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .menu-item:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+            border-color: #c7d2fe;
+        }
+
+        .menu-item-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu-item-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .menu-icon {
+            background: #eef2ff;
+            padding: 0.75rem;
+            border-radius: 12px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: #4f46e5;
+        }
+
+        .menu-text h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .menu-text p {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .menu-arrow {
+            color: #9ca3af;
+            transition: color 0.2s;
+        }
+
+        .menu-item:hover .menu-arrow {
+            color: #4f46e5;
+        }
+
+        /* Right Panel */
+        .right-panel {
+            width: 400px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .right-panel.active {
+            opacity: 1;
+            transform: translateX(0);
+            display: block;
+        }
+
+        .panel-header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            padding: 1.5rem;
+            color: white;
+            position: relative;
+        }
+
+        .panel-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 0.25rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .panel-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .panel-header-content {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .panel-icon {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+
+        .panel-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+        }
+
+        .panel-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .panel-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.875rem;
+        }
+
+        .panel-content {
+            padding: 1.5rem;
+        }
+
+        .content-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-text {
+            color: #6b7280;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .benefits-list {
+            list-style: none;
+        }
+
+        .benefits-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .bullet {
+            width: 6px;
+            height: 6px;
+            background: #4f46e5;
+            border-radius: 50%;
+            margin-top: 0.5rem;
+            flex-shrink: 0;
+        }
+
+        .tools-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tool-tag {
+            background: #eef2ff;
+            color: #4338ca;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .timeline-box {
+            background: #f9fafb;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .timeline-box .section-title {
+            margin-bottom: 0.25rem;
+        }
+
+        .cta-button {
+            width: 100%;
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 1.5rem;
+        }
+
+        .cta-button:hover {
+            background: #4338ca;
+        }
+
+        /* Icons */
+        .icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .right-panel {
+                width: 100%;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <!-- Left Section -->
+            <div class="left-section">
+                <!-- Hero Card -->
+                <div class="hero-card">
+                    <h1 class="hero-title">
+                        Soluciones Basadas<br>
+                        en Datos Alineados<br>
+                        Con tus Objetivos
+                    </h1>
+                    <button class="start-btn">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <polygon points="5,3 19,12 5,21 5,3"></polygon>
+                        </svg>
+                        COMENZAR
+                    </button>
+                </div>
+
+                <!-- Menu Items -->
+                <div class="menu-items" id="menuItems">
+                    <div class="menu-item" data-item="analisis">
+                        <div class="menu-item-content">
+                            <div class="menu-item-left">
+                                <div class="menu-icon">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                                    </svg>
+                                </div>
+                                <div class="menu-text">
+                                    <h3>Análisis de datos</h3>
+                                    <p>Transformamos datos complejos en insights accionables para la toma de decisiones estratégicas.</p>
+                                </div>
+                            </div>
+                            <svg class="icon menu-arrow" viewBox="0 0 24 24">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12,5 19,12 12,19"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-item="ciencia">
+                        <div class="menu-item-content">
+                            <div class="menu-item-left">
+                                <div class="menu-icon">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"></polyline>
+                                        <polyline points="17,6 23,6 23,12"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="menu-text">
+                                    <h3>Ciencia de datos</h3>
+                                    <p>Desarrollamos modelos predictivos y algoritmos personalizados para resolver desafíos específicos.</p>
+                                </div>
+                            </div>
+                            <svg class="icon menu-arrow" viewBox="0 0 24 24">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12,5 19,12 12,19"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-item="ingenieria">
+                        <div class="menu-item-content">
+                            <div class="menu-item-left">
+                                <div class="menu-icon">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                                        <rect x="9" y="9" width="6" height="6"></rect>
+                                        <line x1="9" y1="1" x2="9" y2="4"></line>
+                                        <line x1="15" y1="1" x2="15" y2="4"></line>
+                                        <line x1="9" y1="20" x2="9" y2="23"></line>
+                                        <line x1="15" y1="20" x2="15" y2="23"></line>
+                                        <line x1="20" y1="9" x2="23" y2="9"></line>
+                                        <line x1="20" y1="14" x2="23" y2="14"></line>
+                                        <line x1="1" y1="9" x2="4" y2="9"></line>
+                                        <line x1="1" y1="14" x2="4" y2="14"></line>
+                                    </svg>
+                                </div>
+                                <div class="menu-text">
+                                    <h3>Ingeniería de datos</h3>
+                                    <p>Construimos pipelines robustos para la recolección, procesamiento y almacenamiento de datos.</p>
+                                </div>
+                            </div>
+                            <svg class="icon menu-arrow" viewBox="0 0 24 24">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12,5 19,12 12,19"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-item="visualizacion">
+                        <div class="menu-item-content">
+                            <div class="menu-item-left">
+                                <div class="menu-icon">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                                    </svg>
+                                </div>
+                                <div class="menu-text">
+                                    <h3>Visualización de datos</h3>
+                                    <p>Creamos dashboards interactivos y reportes visuales que comunican insights de forma clara.</p>
+                                </div>
+                            </div>
+                            <svg class="icon menu-arrow" viewBox="0 0 24 24">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12,5 19,12 12,19"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="menu-item" data-item="arquitectura">
+                        <div class="menu-item-content">
+                            <div class="menu-item-left">
+                                <div class="menu-icon">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <ellipse cx="11" cy="11" rx="8" ry="4"></ellipse>
+                                        <path d="M11 3l0 16"></path>
+                                        <path d="M11 3c4 0 8 1.79 8 4s-4 4-8 4-8-1.79-8-4 4-4 8-4z"></path>
+                                        <path d="M11 11c4 0 8 1.79 8 4s-4 4-8 4-8-1.79-8-4 4-4 8-4z"></path>
+                                    </svg>
+                                </div>
+                                <div class="menu-text">
+                                    <h3>Arquitectura de datos</h3>
+                                    <p>Diseñamos arquitecturas de datos modernas y escalables para soportar el crecimiento empresarial.</p>
+                                </div>
+                            </div>
+                            <svg class="icon menu-arrow" viewBox="0 0 24 24">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12,5 19,12 12,19"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="right-panel" id="rightPanel">
+                <div class="panel-header">
+                    <button class="panel-close" onclick="closePanel()">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                    <div class="panel-header-content">
+                        <div class="panel-icon" id="panelIcon">
+                            <!-- Icon will be inserted here -->
+                        </div>
+                        <h2 class="panel-title" id="panelTitle">Título del servicio</h2>
+                    </div>
+                    <p class="panel-description" id="panelDescription">Descripción del servicio</p>
+                </div>
+
+                <div class="panel-content">
+                    <div class="content-section">
+                        <h3 class="section-title">Descripción</h3>
+                        <p class="section-text" id="panelOverview">Descripción detallada del servicio.</p>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="section-title">Beneficios Clave</h3>
+                        <ul class="benefits-list" id="panelBenefits">
+                            <!-- Benefits will be inserted here -->
+                        </ul>
+                    </div>
+
+                    <div class="content-section">
+                        <h3 class="section-title">Herramientas</h3>
+                        <div class="tools-container" id="panelTools">
+                            <!-- Tools will be inserted here -->
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <div class="timeline-box">
+                            <h3 class="section-title">Tiempo de Implementación</h3>
+                            <p class="section-text" id="panelTimeline">Tiempo estimado</p>
+                        </div>
+                    </div>
+
+                    <button class="cta-button">Solicitar Consulta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data for each service
+        const servicesData = {
+            analisis: {
+                title: 'Análisis de datos',
+                description: 'Transformamos datos complejos en insights accionables para la toma de decisiones estratégicas.',
+                icon: `<svg class="icon" viewBox="0 0 24 24">
+                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>`,
+                overview: 'Nuestro servicio de análisis de datos utiliza técnicas avanzadas de estadística y machine learning para extraer patrones ocultos y tendencias significativas de grandes volúmenes de información.',
+                benefits: [
+                    'Identificación de oportunidades de negocio',
+                    'Optimización de procesos operativos',
+                    'Predicción de tendencias de mercado',
+                    'Reducción de riesgos empresariales'
+                ],
+                tools: ['Python', 'R', 'SQL', 'Tableau', 'Power BI'],
+                timeline: '2-6 semanas según complejidad'
+            },
+            ciencia: {
+                title: 'Ciencia de datos',
+                description: 'Desarrollamos modelos predictivos y algoritmos personalizados para resolver desafíos específicos.',
+                icon: `<svg class="icon" viewBox="0 0 24 24">
+                        <polyline points="23,6 13.5,15.5 8.5,10.5 1,18"></polyline>
+                        <polyline points="17,6 23,6 23,12"></polyline>
+                    </svg>`,
+                overview: 'Aplicamos métodos científicos, procesos y algoritmos para extraer conocimiento e insights de datos estructurados y no estructurados.',
+                benefits: [
+                    'Modelos de machine learning personalizados',
+                    'Automatización de procesos de análisis',
+                    'Predicciones precisas y confiables',
+                    'Soluciones escalables y robustas'
+                ],
+                tools: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'Jupyter', 'Docker'],
+                timeline: '4-12 semanas según complejidad'
+            },
+            ingenieria: {
+                title: 'Ingeniería de datos',
+                description: 'Construimos pipelines robustos para la recolección, procesamiento y almacenamiento de datos.',
+                icon: `<svg class="icon" viewBox="0 0 24 24">
+                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                        <rect x="9" y="9" width="6" height="6"></rect>
+                        <line x1="9" y1="1" x2="9" y2="4"></line>
+                        <line x1="15" y1="1" x2="15" y2="4"></line>
+                        <line x1="9" y1="20" x2="9" y2="23"></line>
+                        <line x1="15" y1="20" x2="15" y2="23"></line>
+                        <line x1="20" y1="9" x2="23" y2="9"></line>
+                        <line x1="20" y1="14" x2="23" y2="14"></line>
+                        <line x1="1" y1="9" x2="4" y2="9"></line>
+                        <line x1="1" y1="14" x2="4" y2="14"></line>
+                    </svg>`,
+                overview: 'Diseñamos y construimos la infraestructura necesaria para recopilar, almacenar y procesar grandes volúmenes de datos de manera eficiente y confiable.',
+                benefits: [
+                    'Pipelines de datos automatizados',
+                    'Infraestructura escalable en la nube',
+                    'Calidad y consistencia de datos',
+                    'Integración con múltiples fuentes'
+                ],
+                tools: ['Apache Spark', 'Kafka', 'Airflow', 'AWS/Azure', 'MongoDB'],
+                timeline: '6-16 semanas según infraestructura'
+            },
+            visualizacion: {
+                title: 'Visualización de datos',
+                description: 'Creamos dashboards interactivos y reportes visuales que comunican insights de forma clara.',
+                icon: `<svg class="icon" viewBox="0 0 24 24">
+                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>`,
+                overview: 'Transformamos datos complejos en visualizaciones intuitivas y dashboards interactivos que facilitan la comprensión y comunicación de insights.',
+                benefits: [
+                    'Dashboards en tiempo real',
+                    'Visualizaciones interactivas',
+                    'Reportes automatizados',
+                    'Interfaz intuitiva para usuarios finales'
+                ],
+                tools: ['D3.js', 'Plotly', 'Tableau', 'Power BI', 'React'],
+                timeline: '3-8 semanas según complejidad'
+            },
+            arquitectura: {
+                title: 'Arquitectura de datos',
+                description: 'Diseñamos arquitecturas de datos modernas y escalables para soportar el crecimiento empresarial.',
+                icon: `<svg class="icon" viewBox="0 0 24 24">
+                        <ellipse cx="11" cy="11" rx="8" ry="4"></ellipse>
+                        <path d="M11 3l0 16"></path>
+                        <path d="M11 3c4 0 8 1.79 8 4s-4 4-8 4-8-1.79-8-4 4-4 8-4z"></path>
+                        <path d="M11 11c4 0 8 1.79 8 4s-4 4-8 4-8-1.79-8-4 4-4 8-4z"></path>
+                    </svg>`,
+                overview: 'Planificamos y diseñamos arquitecturas de datos modernas que garantizan la escalabilidad, seguridad y eficiencia en el manejo de información empresarial.',
+                benefits: [
+                    'Arquitecturas cloud-native',
+                    'Escalabilidad horizontal',
+                    'Seguridad y compliance',
+                    'Optimización de costos'
+                ],
+                tools: ['AWS/Azure/GCP', 'Kubernetes', 'Terraform', 'Apache Kafka', 'Elasticsearch'],
+                timeline: '8-20 semanas según alcance'
+            }
+        };
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const itemType = this.getAttribute('data-item');
+                    showServiceDetails(itemType);
+                });
+            });
+        });
+
+        function showServiceDetails(serviceType) {
+            const service = servicesData[serviceType];
+            if (!service) return;
+
+            const rightPanel = document.getElementById('rightPanel');
+            
+            // Update panel content
+            document.getElementById('panelIcon').innerHTML = service.icon;
+            document.getElementById('panelTitle').textContent = service.title;
+            document.getElementById('panelDescription').textContent = service.description;
+            document.getElementById('panelOverview').textContent = service.overview;
+            document.getElementById('panelTimeline').textContent = service.timeline;
+
+            // Update benefits
+            const benefitsList = document.getElementById('panelBenefits');
+            benefitsList.innerHTML = '';
+            service.benefits.forEach(benefit => {
+                const li = document.createElement('li');
+                li.innerHTML = `<div class="bullet"></div>${benefit}`;
+                benefitsList.appendChild(li);
+            });
+
+            // Update tools
+            const toolsContainer = document.getElementById('panelTools');
+            toolsContainer.innerHTML = '';
+            service.tools.forEach(tool => {
+                const toolTag = document.createElement('span');
+                toolTag.className = 'tool-tag';
+                toolTag.textContent = tool;
+                toolsContainer.appendChild(toolTag);
+            });
+
+            // Show panel
+            rightPanel.classList.add('active');
+        }
+
+        function closePanel() {
+            const rightPanel = document.getElementById('rightPanel');
+            rightPanel.classList.remove('active');
+        }
+    </script>
+</body>
+</html>

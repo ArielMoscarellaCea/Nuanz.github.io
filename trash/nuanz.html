@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios - Nuanz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #5B4FE8;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #5B4FE8;
+        }
+
+        .contact-btn {
+            background: #5B4FE8;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(91, 79, 232, 0.3);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(91, 79, 232, 0.4);
+        }
+
+        .services-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .services-title {
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .services-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .services-grid {
+             display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+             margin-top: 3rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #5B4FE8, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            color: #555;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #5B4FE8;
+            font-weight: bold;
+        }
+
+        .service-cta {
+            background: linear-gradient(135deg, #5B4FE8, #764ba2);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(91, 79, 232, 0.3);
+        }
+
+        .service-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(91, 79, 232, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .services-title {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="services-section">
+        <h1 class="services-title">Nuestros Servicios</h1>
+        <p class="services-subtitle">
+            Transformamos tus datos en insights accionables con soluciones personalizadas y tecnología de vanguardia
+        </p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <div class="service-content">
+                    <h3 class="service-title">Análisis de Datos Avanzado</h3>
+                    <p class="service-description">
+                        Descubre patrones ocultos en tus datos mediante técnicas de análisis estadístico y machine learning. 
+                        Convertimos información compleja en insights claros y accionables.
+                    </p>
+                    <ul class="service-features">
+                        <li>Análisis predictivo y forecasting</li>
+                        <li>Segmentación de clientes</li>
+                        <li>Detección de anomalías</li>
+                        <li>Modelos de machine learning personalizados</li>
+                    </ul>
+                    <a href="#" class="service-cta">Conocer más</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📈</div>
+                <div class="service-content">
+                    <h3 class="service-title">Visualización de Datos</h3>
+                    <p class="service-description">
+                        Creamos dashboards interactivos y visualizaciones impactantes que facilitan la toma de decisiones. 
+                        Tus datos cobran vida a través de gráficos intuitivos y dinámicos.
+                    </p>
+                    <ul class="service-features">
+                        <li>Dashboards personalizados</li>
+                        <li>Reportes automatizados</li>
+                        <li>Visualizaciones interactivas</li>
+                        <li>KPIs y métricas en tiempo real</li>
+                    </ul>
+                    <a href="#" class="service-cta">Conocer más</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏗️</div>
+                <div class="service-content">
+                    <h3 class="service-title">Arquitectura de Datos</h3>
+                    <p class="service-description">
+                        Diseñamos y construimos infraestructuras de datos escalables y eficientes. 
+                        Desde la ingesta hasta el almacenamiento, optimizamos cada paso de tu pipeline de datos.
+                    </p>
+                    <ul class="service-features">
+                        <li>Data warehouses y data lakes</li>
+                        <li>ETL/ELT automatizado</li>
+                        <li>Migración a la nube</li>
+                        <li>Gobierno y calidad de datos</li>
+                    </ul>
+                    <a href="#" class="service-cta">Conocer más</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <div class="service-content">
+                    <h3 class="service-title">Inteligencia Artificial</h3>
+                    <p class="service-description">
+                        Implementamos soluciones de IA que automatizan procesos y mejoran la eficiencia operativa. 
+                        Desde chatbots hasta sistemas de recomendación, llevamos la IA a tu negocio.
+                    </p>
+                    <ul class="service-features">
+                        <li>Procesamiento de lenguaje natural</li>
+                        <li>Visión por computadora</li>
+                        <li>Sistemas de recomendación</li>
+                        <li>Automatización inteligente</li>
+                    </ul>
+                    <a href="#" class="service-cta">Conocer más</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <div class="service-content">
+                    <h3 class="service-title">Consultoría en Datos</h3>
+                    <p class="service-description">
+                        Te acompañamos en tu transformación digital con estrategias personalizadas de datos. 
+                        Evaluamos tu situación actual y diseñamos la hoja de ruta hacia el éxito basado en datos.
+                    </p>
+                    <ul class="service-features">
+                        <li>Auditoría de datos</li>
+                        <li>Estrategia de datos</li>
+                        <li>Roadmap de implementación</li>
+                        <li>Capacitación de equipos</li>
+                    </ul>
+                    <a href="#" class="service-cta">Conocer más</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <div class="service-content">
+                    <h3 class="service-title">Automatización de Procesos</h3>
+                    <p class="service-description">
+                        Optimizamos tus operaciones mediante la automatización inteligente de procesos repetitivos. 
+                        Aumenta la productividad y reduce errores con nuestras soluciones personalizadas.
+                    </p>
+                    <ul class="service-features">
+                        <li>RPA (Robotic Process Automation)</li>
+                        <li>Workflows automatizados</li>
+                        <li>Integración de sistemas</li>
+                        <li>Monitoreo y alertas automáticas</li>
+                    </ul>
+                    <a href="#" class="service-cta">Conocer más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

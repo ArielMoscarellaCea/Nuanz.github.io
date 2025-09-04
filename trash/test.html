@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casos de Éxito - Nuanz</title>
+    <style>
+       
+        /* Main Content */
+        .main-section {
+            padding: 100px 50px;
+            text-align: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 72px;
+            font-weight: 900;
+            color: #1e293b;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+        
+        .section-subtitle {
+            font-size: 20px;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto 80px auto;
+            line-height: 1.6;
+        }
+        
+        /* Cases Grid */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .case-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #5B47FF, #7c3aed);
+        }
+        
+        .case-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .case-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #5B47FF, #7c3aed);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .case-company {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        
+        .case-industry {
+            font-size: 14px;
+            color: #7c3aed;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        
+        .case-description {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .case-results {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .result-item {
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .result-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #5B47FF;
+            display: block;
+        }
+        
+        .result-label {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 60px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .cta-title {
+            font-size: 48px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        
+        .cta-description {
+            font-size: 18px;
+            color: #64748b;
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #00d4aa, #00b894);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 212, 170, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 212, 170, 0.4);
+        }
+        
+        /* Responsive */
+        @media (min-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+            
+            .nav {
+                display: none;
+            }
+            
+            .main-section {
+                padding: 60px 20px;
+            }
+            
+            .section-title {
+                font-size: 48px;
+            }
+            
+            .cases-grid {
+                gap: 20px;
+            }
+            
+            .case-card {
+                padding: 30px 20px;
+            }
+            
+            .case-results {
+                gap: 20px;
+            }
+            
+            .cta-section {
+                padding: 40px 20px;
+            }
+            
+            .cta-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="#" class="logo">nuanz</a>
+        <nav class="nav">
+            <a href="#">Inicio</a>
+            <a href="#">Nosotros</a>
+            <a href="#">Soluciones</a>
+            <a href="#">Aclaremos</a>
+            <a href="#" class="contact-btn">Contactanos</a>
+        </nav>
+    </header>
+
+    <!-- Main Section -->
+    <section class="main-section">
+        <h1 class="section-title">Casos de Éxito Reales</h1>
+        <p class="section-subtitle">
+            Descubre cómo hemos transformado los datos de nuestros clientes en ventajas competitivas medibles y resultados extraordinarios.
+        </p>
+
+        <!-- Cases Grid -->
+        <div class="cases-grid">
+            <div class="case-card">
+                <div class="case-icon">🏪</div>
+                <h3 class="case-company">RetailMax</h3>
+                <div class="case-industry">Comercio Retail</div>
+                <p class="case-description">
+                    Implementamos un sistema de análisis predictivo que optimizó su gestión de inventario y mejoró la experiencia del cliente mediante personalización de ofertas.
+                </p>
+                <div class="case-results">
+                    <div class="result-item">
+                        <span class="result-number">+45%</span>
+                        <span class="result-label">Ventas</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">-30%</span>
+                        <span class="result-label">Costos Inventario</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">85%</span>
+                        <span class="result-label">Satisfacción</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">🏥</div>
+                <h3 class="case-company">MediCare Plus</h3>
+                <div class="case-industry">Salud</div>
+                <p class="case-description">
+                    Desarrollamos una plataforma de inteligencia clínica que ayudó a reducir tiempos de diagnóstico y mejorar la precisión en tratamientos médicos.
+                </p>
+                <div class="case-results">
+                    <div class="result-item">
+                        <span class="result-number">-60%</span>
+                        <span class="result-label">Tiempo Diagnóstico</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">+92%</span>
+                        <span class="result-label">Precisión</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">2M+</span>
+                        <span class="result-label">Pacientes</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">🏭</div>
+                <h3 class="case-company">IndusTech</h3>
+                <div class="case-industry">Manufactura</div>
+                <p class="case-description">
+                    Creamos un ecosistema de IoT y analytics que revolucionó su proceso productivo, reduciendo desperdicios y optimizando la cadena de suministro.
+                </p>
+                <div class="case-results">
+                    <div class="result-item">
+                        <span class="result-number">+35%</span>
+                        <span class="result-label">Productividad</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">-50%</span>
+                        <span class="result-label">Desperdicios</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">$2.5M</span>
+                        <span class="result-label">Ahorros</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">🚗</div>
+                <h3 class="case-company">AutoFlow</h3>
+                <div class="case-industry">Logística</div>
+                <p class="case-description">
+                    Implementamos algoritmos de optimización de rutas y análisis predictivo de demanda que transformaron su operación logística global.
+                </p>
+                <div class="case-results">
+                    <div class="result-item">
+                        <span class="result-number">-40%</span>
+                        <span class="result-label">Costos Logística</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">+98%</span>
+                        <span class="result-label">Entregas a Tiempo</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">15K+</span>
+                        <span class="result-label">Rutas Optimizadas</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">🏦</div>
+                <h3 class="case-company">FinanceCore</h3>
+                <div class="case-industry">Fintech</div>
+                <p class="case-description">
+                    Desarrollamos modelos de machine learning para detección de fraudes y scoring crediticio que mejoraron significativamente su gestión de riesgos.
+                </p>
+                <div class="case-results">
+                    <div class="result-item">
+                        <span class="result-number">-75%</span>
+                        <span class="result-label">Fraudes</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">+55%</span>
+                        <span class="result-label">Aprobaciones</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">99.2%</span>
+                        <span class="result-label">Precisión</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-icon">🎓</div>
+                <h3 class="case-company">EduTech Pro</h3>
+                <div class="case-industry">Educación</div>
+                <p class="case-description">
+                    Creamos una plataforma de aprendizaje adaptativo que personaliza la experiencia educativa basándose en el análisis del comportamiento estudiantil.
+                </p>
+                <div class="case-results">
+                    <div class="result-item">
+                        <span class="result-number">+68%</span>
+                        <span class="result-label">Retención</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">+85%</span>
+                        <span class="result-label">Rendimiento</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-number">500K+</span>
+                        <span class="result-label">Estudiantes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 class="cta-title">¿Listo para Tu Transformación?</h2>
+            <p class="cta-description">
+                Únete a las empresas que ya están aprovechando el poder de sus datos para crear ventajas competitivas sostenibles.
+            </p>
+            <a href="#" class="cta-button">¡Contactanos!</a>
+        </div>
+    </section>
+</body>
+</html>
