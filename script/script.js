@@ -1,4 +1,11 @@
- // Data for each service
+//INDEX
+
+//NOSOTROS 
+
+
+
+
+// Data for each service
         const servicesData = {
             analisis: {
                 title: 'Análisis de datos',
